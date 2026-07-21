@@ -7,7 +7,7 @@ const output = document.querySelector("#output");
 function addJSON(){
   console.log('clicked');
   output.innerHTML = "WORKING";
-  const url = "https://dummyjson.com/users/1";
+  const url = "https://dummyjson.com/users/20";
   fetch(url).then(function(response){
     console.log(response.status);
     return response.json()
