@@ -1,17 +1,70 @@
-document.getElementById("addButton").addEventListener("click", addToStorage);
-document.getElementById("seeButton").addEventListener("click", viewStorage);
-const people = JSON.parse(localStorage.getItem('tester1')) || {first:"none", last:"none"};
-console.log(people);
+/*
+let people = {
+  "person1":{
+    "firstName": "John",
+    "lastName": "Dakin",
+    "age": 22,
+    "checkedin": true
+  },
+  "person2":{
+    "firstName": "Ian",
+    "lastName": "Rayan",
+    "age": 21,
+    "checkedin": false
+  }
+}
+  */
 
-function addToStorage() {
-  let tempFirst = document.getElementById("firstName").value;
-  let tempLast = document.getElementById("lastName").value;
-  let myObj = { first: tempFirst, last: tempLast };
+/*
+let person = {
+  "name": "Mike",
+  "Address":{
+    "Street": "Road no. 2",
+    "City": "Pershawar",
+    "Country": "Pakistan"
+  },
+  "Hobbies": [
+    "doing stuff",
+    "travelling"
+  ],
+  "Car":{
+    "make": "Honda",
+    "year": "2015",
+    "color": "red"
+  }
+}
+*/
 
-  localStorage.setItem("tester1", JSON.stringify(myObj));
+/*
+let myObj = {
+  "friend": [{
+      "firstName": "Hassan",
+      "lastName": "Abakuni"
+    },
+    {
+      "firstName": "Raphael",
+      "lastName": "Mike"
+    },
+    {
+      "firstName": "Fivio",
+      "lastName": "Foreign"
+    },
+    {
+      "firstName": "Tion",
+      "lastName": "The Pooh"
+    }]
 }
 
-function viewStorage() {
-  let tempHolder = localStorage.getItem("tester1") || people;
-  console.log(tempHolder);
+let users = myObj.friend;
+let html = '';
+for(let x in users){
+  console.log((Number(x)+1) + ' ' + users[x].firstName + ' ' + users[x].lastName);
+  html += (Number(x)+1) + ' ' + users[x].firstName + ' ' + users[x].lastName + '<br>';
+}
+
+document.getElementById('output').innerHTML = html;
+*/
+
+let data = {
+
 }
