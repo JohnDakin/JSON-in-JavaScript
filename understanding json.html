@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding JSON in JavaScript</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background:#f4f4f4;
+            margin:40px;
+            line-height:1.6;
+        }
+
+        .container{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,.1);
+        }
+
+        h1,h2{
+            color:#2c3e50;
+        }
+
+        .box{
+            background:#eef7ff;
+            padding:15px;
+            border-left:5px solid #3498db;
+            margin:20px 0;
+        }
+
+        pre{
+            background:#272822;
+            color:#f8f8f2;
+            padding:15px;
+            overflow:auto;
+            border-radius:5px;
+        }
+
+        button{
+            padding:10px 20px;
+            border:none;
+            background:#3498db;
+            color:white;
+            border-radius:5px;
+            cursor:pointer;
+            margin-top:10px;
+        }
+
+        button:hover{
+            background:#2980b9;
+        }
+
+        #output{
+            margin-top:20px;
+            background:#f8f8f8;
+            border:1px solid #ddd;
+            padding:15px;
+            min-height:80px;
+            white-space:pre-wrap;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+
+        table, th, td{
+            border:1px solid #ccc;
+        }
+
+        th, td{
+            padding:10px;
+            text-align:left;
+        }
+
+        th{
+            background:#3498db;
+            color:white;
+        }
+
+        code{
+            color:#c7254e;
+            background:#f9f2f4;
+            padding:2px 4px;
+            border-radius:3px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Understanding JSON in JavaScript</h1>
+
+<p>
+JSON stands for <strong>JavaScript Object Notation</strong>.
+It is a lightweight format used to store and exchange data.
+Although it originated from JavaScript, JSON is supported by almost every programming language.
+</p>
+
+<div class="box">
+<h2>Why Do We Use JSON?</h2>
+
+<ul>
+<li>Store data in Local Storage.</li>
+<li>Send data between a web browser and a server.</li>
+<li>Read configuration files.</li>
+<li>Exchange data between different programming languages.</li>
+</ul>
+</div>
+
+<h2>JavaScript Object</h2>
+
+<pre>
+const student = {
+    name: "John",
+    age: 22,
+    course: "Computer Science"
+};
+</pre>
+
+<h2>Equivalent JSON</h2>
+
+<pre>
+{
+    "name": "John",
+    "age": 22,
+    "course": "Computer Science"
+}
+</pre>
+
+<div class="box">
+<strong>Notice:</strong>
+
+<ul>
+<li>JSON keys must always use double quotes (" ").</li>
+<li>Strings use double quotes.</li>
+<li>JSON cannot contain functions.</li>
+<li>JSON cannot contain undefined values.</li>
+</ul>
+</div>
+
+<h2>JavaScript Object vs JSON</h2>
+
+<table>
+<tr>
+<th>JavaScript Object</th>
+<th>JSON</th>
+</tr>
+
+<tr>
+<td>Can contain functions</td>
+<td>Cannot contain functions</td>
+</tr>
+
+<tr>
+<td>Keys may use quotes or not</td>
+<td>Keys must use double quotes</td>
+</tr>
+
+<tr>
+<td>Used inside JavaScript programs</td>
+<td>Used for storing and transferring data</td>
+</tr>
+
+<tr>
+<td>Actual object</td>
+<td>Text (String)</td>
+</tr>
+
+</table>
+
+<h2>Converting an Object to JSON</h2>
+
+<p>
+Use <code>JSON.stringify()</code>.
+</p>
+
+<pre>
+const person = {
+    name: "Alice",
+    age: 25
+};
+
+const jsonString = JSON.stringify(person);
+</pre>
+
+<button onclick="convertToJSON()">
+Convert Object to JSON
+</button>
+
+<h2>Converting JSON Back into an Object</h2>
+
+<p>
+Use <code>JSON.parse()</code>.
+</p>
+
+<pre>
+const json =
+'{"name":"Alice","age":25}';
+
+const object = JSON.parse(json);
+</pre>
+
+<button onclick="convertToObject()">
+Convert JSON to Object
+</button>
+
+<h2>Output</h2>
+
+<div id="output">
+Click one of the buttons above.
+</div>
+
+<h2>JSON and Local Storage</h2>
+
+<p>
+Local Storage only stores strings.
+If you want to save an object, convert it into JSON first.
+</p>
+
+<pre>
+// Save
+localStorage.setItem(
+    "student",
+    JSON.stringify(student)
+);
+
+// Read
+const data =
+JSON.parse(localStorage.getItem("student"));
+</pre>
+
+<h2>Summary</h2>
+
+<ul>
+<li>JSON stands for JavaScript Object Notation.</li>
+<li>JSON is a text format used to store and transfer data.</li>
+<li><code>JSON.stringify()</code> converts an object into a JSON string.</li>
+<li><code>JSON.parse()</code> converts a JSON string back into a JavaScript object.</li>
+<li>JSON is commonly used with APIs and Local Storage.</li>
+</ul>
+
+</div>
+
+<script>
+
+const output = document.getElementById("output");
+
+function convertToJSON(){
+
+    const student = {
+        name: "John",
+        age: 21,
+        course: "Software Engineering"
+    };
+
+    const json = JSON.stringify(student, null, 4);
+
+    output.textContent =
+        "Original JavaScript Object:\n\n"
+        + JSON.stringify(student, null, 4)
+        + "\n\nConverted to JSON:\n\n"
+        + json;
+}
+
+function convertToObject(){
+
+    const jsonString =
+    '{"name":"Grace","age":24,"course":"Information Technology"}';
+
+    const object = JSON.parse(jsonString);
+
+    output.textContent =
+        "JSON String:\n\n"
+        + jsonString
+        + "\n\nConverted JavaScript Object:\n\n"
+        + "Name: " + object.name
+        + "\nAge: " + object.age
+        + "\nCourse: " + object.course;
+}
+
+</script>
+
+</body>
+</html>
